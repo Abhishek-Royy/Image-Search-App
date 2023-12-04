@@ -18,9 +18,25 @@ const fetchImages = async (query, pageNumber) => {
     // console.log(data);
 
     data.results.forEach((photo) => {
+      // const imageElement = document.createElement("div");
+      // imageElement.innerHTML = `<img src="${photo.urls.regular}" alt="suspect image" />`;
+
+      // const download = `<a href="${photo.urls.regular}" download="">Download</a>`;
+
+      // imageContainer.appendChild(imageElement);
+      // imageContainer.appendChild(download);
+
       const imageElement = document.createElement("div");
       imageElement.innerHTML = `<img src="${photo.urls.regular}" alt="suspect image" />`;
+
+      const downloadLink = document.createElement("a");
+      downloadLink.href = photo.urls.regular;
+      downloadLink.setAttribute("download", ""); 
+
+      downloadLink.textContent = "Download"; 
+
       imageContainer.appendChild(imageElement);
+      imageContainer.appendChild(downloadLink);
     });
   } catch (error) {
     console.error("Error fetching images:", error);
